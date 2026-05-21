@@ -1,4 +1,4 @@
-# sesión 04 - 23/03
+# sesión 04 - 10/04
 # Datos Dinámicos y *Variables*  
 
 ### Posición del mouse    
