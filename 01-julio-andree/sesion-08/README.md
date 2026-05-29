@@ -15,3 +15,8 @@ Ej: `let Colores =["red", "orange", "yellow","green", "blue"]`
 ### ¿Como los uso? ¿Como llamar a los valores del Array?  
 Vamos a usar: `nombreArray [n elementos]`  
 Ej: `backgorund (colores[1])`  
+### Class (Molde)  
+Es un molde o plantilla que define los datos, propiedades o metodos de un objeto especifico.  
+Sintasix: Se estructura siempre en tres partes dentro de un bloque de llaves:  
+### Class + Array  
+
