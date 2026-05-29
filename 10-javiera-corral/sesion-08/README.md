@@ -278,39 +278,54 @@ CLASS + ARRAY
 ejemplo7 cuadrados 
 
 ```
+// Declaramos un array vacío global para almacenar los 10 objetos cuadrados
 let cuadrados = [];
 
 function setup() {
-  createCanvas(500, 500);
-  frameRate(20);
+  createCanvas(500, 500); // Creamos un lienzo de 500x500 píxeles
+  frameRate(20); // Ralentizamos el código a solo 2 fotogramas por segundo
+
+  //  Loop de inicialización: se ejecuta 10 veces al arrancar el programa
   for (let i = 0; i < 10; i++) {
-    cuadrados[i] = new cuadrado();
+    // Fabricamos un objeto real usando el molde de la clase y lo guardamos en la posición 'i'
+    cuadrados[i] = new Cuadrado();
   }
 }
 
 function draw() {
-  background(129, 167, 242);
+  background(129, 167, 242); // Pintamos el fondo de color lila
 
+  //  Loop de actualización: recorre los 10 cuadrados guardados en el array
   for (let i = 0; i < cuadrados.length; i++) {
-    cuadrados[i].move();
-    cuadrados[i].show();
+    cuadrados[i].show(); // Le pide al cuadrado actual que se dibuje en la pantalla
+    cuadrados[i].move(); // Le pide al cuadrado actual que cambie su posición
   }
 }
 
-class cuadrado {
+// El molde o Clase
+class Cuadrado {
+  // El constructor define las propiedades iniciales de cada cuadrado cuando nace
   constructor() {
-    this.x = 250;
-    this.y = 250;
+    this.x = 250; // Todos nacen exactamente en el centro horizontal (500 / 2)
+    this.y = 200; // Todos nacen exactamente en el centro vertical (500 / 2)
   }
 
+  // Método para alterar la posición del objeto
   move() {
+    // Al valor actual de X e Y se le suma un número al azar entre -5 y 5
+    // Esto genera un movimiento tembloroso
     this.x = this.x + random(-5, 5);
     this.y = this.y + random(-5, 5);
   }
+
+  // Método para renderizar (dibujar) el objeto en el lienzo
   show() {
+    // Define un color de borde aleatorio en sus tres canales (Rojo, Verde, Azul)
     stroke(random(255), random(255), random(255));
-    strokeWeight(5);
-    noFill();
+    strokeWeight(4); // Define un grosor de borde de 4 píxeles
+    noFill(); // Hace que el interior del cuadrado sea transparente
+
+    // Dibuja el cuadrado usando sus coordenadas internas 'this.x' y 'this.y' con tamaño 20x20
     rect(this.x, this.y, 20, 20);
   }
 }
