@@ -2,11 +2,42 @@
 
 # Examén 
 
-1. Perfeccionar la entrega de la solemne 2, o hacer una nueva, que representaba una problematica de genero  
+1. Perfeccionar la entrega de la solemne 2, o hacer una nueva, que representaba una problematica de genero.  
+2. Debe tener 3 estados (PANTALLAS) : INICIO - INSTRUCCIONES - INTERACCIÓN.  
+3. Debe tener un RESET o forma de volver a comenzar. (Sin tener que apretar play en la interfaz de p5.js)
+4. Hacer un diagrama de flujo de su ALGORITMO - CÓDIGO. (Diseño de sistema)
+5. Adaptar su sketch en p5.js para que sea windowResized. canvas (windowWidth, windowHeight)
 
+## El sketch debe incluir como mínimo lo siguiente:
+
+1. 4 variables creadas por ustedes.  
+2. 2 variables Integradas en p5.js (ej: width, height, mouseX).  
+3. 2 imágenes.  
+4. Texto.  
+5. 1 función random() y 1 función map().  
+6. 3 Sentencias condicionales (if, else if, else)  
+7. 1 bucle for (ideal para patrones o repetición de elementos).  
+8. 2 funciones propias definidas fuera de draw().  
+9. 1 interacciones con el usuario (ej: mouseIsPressed, keyPressed, etc).  
+10. 1 Array + 1 Class  
+11. Incluir Periféricos: WEB CAM o SONIDOS o TECLADO  
+12.Debe tener 3 estados y un RESET.  
 
 ## Carpeta de entrega
-*
+
+* En la carpeta de entrega deben dejar 3 links:  
+1. Link a un repositorio en Github que presente el Examen de forma
+detallada y en lenguaje formal. (REPO EXAMEN)
+
+2. Link al Sketch en p5.js (con permiso de edición)
+
+3. Link al repositorio de la bitácora de clases: (Deben estar todas las
+clases desde Historia de la Computación en adelante)
+
+* Dejar el documento con los link en la carpeta de entrega EXAMEN en nuestro Google Drive del curso antes de la clase del viernes 26 de JUNIO.
+
+## Pauta de evaluación
+![Pauta de evaluación](https://github.com/user-attachments/assets/08300fa1-c377-4a50-b9e9-46b8ff491a29) 
 
 ---
 
@@ -130,3 +161,62 @@ function draw() {
 }
 ```
 
+## Ejemlo de sistema de partículas en p5.js
+
+```
+let gotas = []; // creo  Array vacío para guardar las partículas
+
+function setup() {
+  createCanvas(500, 500);
+
+  // Creamos 200 gotas iniciales al arrancar
+  for (let i = 0; i < 200; i++) {
+    gotas[i] = new Gota();
+  }
+}
+
+function draw() {
+  background(20, 24, 35); // Fondo nocturno oscuro
+
+  // Recorremos el array para actualizar y mostrar cada gota
+  for (let i = 0; i < gotas.length; i++) {
+    gotas[i].caer();
+    gotas[i].mostrar();
+  }
+}
+
+// El molde de nuestra partícula de nuestra gota
+class Gota {
+  constructor() {
+    this.x = random(width); // Nace en un punto horizontal al azar
+    this.y = random(-500, 0); // Nace arriba, fuera de la pantalla, para un efecto escalonado
+    this.velocidad = random(4, 9); // Cada gota tiene una velocidad diferente
+    this.largo = random(10, 25); // El tamaño de la línea de la gota
+  }
+
+  caer() {
+    this.y = this.y + this.velocidad; // Mueve la gota hacia abajo
+
+    // RECOLECTOR/RECICLAJE: Si la gota pasa el fondo de la pantalla...
+    if (this.y > height) {
+      this.y = random(-50, 0); // Resetea su posición arriba del todo
+      this.x = random(width); // Le da una nueva posición horizontal
+      this.velocidad = random(4, 9); // Cambia su velocidad para mantener el ritmo azaroso
+    }
+  }
+
+  mostrar() {
+    stroke(138, 180, 248, 150); // Color azul translúcido (el cuarto número es la opacidad)
+    strokeWeight(2); // Grosor de la línea
+
+    // Dibuja la gota como una línea vertical corta en movimiento
+    line(this.x, this.y, this.x, this.y + this.largo);
+  }
+}
+```
+
+## Encargo para el viernes 5 de junio
+
+* Crear un sistema de partículas, con 5 imágenes (mínimo) en .PNG
+* Se puede crear diseños o usar fotos recortadas.
+* Tema libre.
